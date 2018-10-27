@@ -57,9 +57,13 @@ namespace cs{
 	// Other directives and flags
 	bool single_spin=false;
 	int system_creation_flags[10]={0,0,0,0,0,0,0,0,0,0};
-        std::string system_type_flag[10]={"isolated-particle",
-                                          "cubic-array"};
-        
+        //std::string system_type_flag[10]={"isolated-particle",
+        //                                  "cubic-array"};
+         
+        std::map<std::string,int> map_system_type_flag;
+        std::map<std::string,int> map_system_shape_flag;
+        std::string system_shape_flag;
+        std::string system_type_flag;
 	bool fill_core_shell=true;
    bool core_shell_particles = false;
 

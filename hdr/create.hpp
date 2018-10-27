@@ -50,7 +50,7 @@
 #include <string>
 #include <vector>
 #include <cmath>
-
+#include <map>
 // Vampire headers
 #include "create_atoms_class.hpp" // class definition for atoms in create module
 #include "neighbours.hpp"
@@ -85,9 +85,13 @@ namespace cs{
 	// Other directives and flags
 	extern bool single_spin;
 	extern int system_creation_flags[10];
+        extern std::map<std::string,int> map_system_shape_flag;
+        extern std::map<std::string,int> map_system_type_flag;
+        extern std::string system_shape_flag;
+        extern std::string system_type_flag;
 	//extern std::string system_creation_flags[10];
 	extern bool fill_core_shell;
-   extern bool core_shell_particles;
+        extern bool core_shell_particles;
 
 	// Variables for interfacial roughness control
 	extern bool interfacial_roughness;

@@ -84,7 +84,8 @@ int create_system_type(std::vector<cs::catom_t> & catom_array){
 	//----------------------------------------------------------------------------------
 	// Choose which system type to create
 	//----------------------------------------------------------------------------------
-	switch(cs::system_creation_flags[2]){
+	//switch(cs::system_creation_flags[2]){
+	switch(cs::map_system_shape_flag[system_shape_flag]){
 		case 0: // Isolated particle
 			particle(catom_array);
 			break;

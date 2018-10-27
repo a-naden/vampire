@@ -46,10 +46,8 @@ namespace create{
                                                              "bubble"};
         // mapping strings to an integer, currently 
         // passed straight to cs::system_creation_flags[1]
-        std::map<std::string,int> map_system_shape_flag;
- 
             for (int i; i<possible_particle_shapes.size();i++){
-               map_system_shape_flag[possible_particle_shapes[i]]=i;};
+               cs::map_system_shape_flag[possible_particle_shapes[i]]=i;};
 
         // if the test string (word) is found in the vectir
         std::vector<std::string>::iterator it;
@@ -57,9 +55,9 @@ namespace create{
                          possible_particle_shapes.end(),
                          word);
         if (it != possible_particle_shapes.end())
-           {//cs::system_shape_flag=word
+           {cs::system_shape_flag=word;
                 // apply the associated creation flag
-                cs::system_creation_flags[1]= map_system_shape_flag[word];
+                cs::system_creation_flags[1]= cs::map_system_shape_flag[word];
                 }
         else
         test="faceted-particle";
@@ -115,19 +113,19 @@ namespace create{
 
         // mapping strings to an integer, currently 
         // passed straight to cs::system_creation_flags[1]
-        std::map<std::string,int> map_system_type_flag;
+        // std::map<std::string,int> map_system_type_flag;
 
             for (int i; i<possible_system_types.size();i++){
-                map_system_type_flag[possible_system_types[i]]=i;};
+                cs::map_system_type_flag[possible_system_types[i]]=i;};
 
         // if the test string (word) is found in the vector
         it = std::find(possible_system_types.begin(),
                          possible_system_types.end(),
                          word);
         if (it != possible_system_types.end())
-           {//cs::system_shape_flag=word
+           {cs::system_shape_flag=word;
                 // apply the associated creation flag
-                cs::system_creation_flags[2]= map_system_type_flag[word];
+                cs::system_creation_flags[2]= cs::map_system_type_flag[word];
                 }
         else
       test="voronoi-grain-substructure";
