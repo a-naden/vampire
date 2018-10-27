@@ -8,7 +8,8 @@
 //-----------------------------------------------------------------------------
 
 // C++ standard library headers
-
+#include <map>
+#include <algorithm>
 // Vampire headers
 #include "errors.hpp"
 #include "create.hpp"
@@ -28,12 +29,41 @@ namespace create{
       // Check for valid key, if no match return false
       std::string prefix="create";
       if(key!=prefix) return false;
-
+      
       //----------------------------------
       // Now test for all valid options
       //----------------------------------
-      std::string test="faceted-particle";
-      if(word==test){
+        std::string test;
+        // vector of strings to match word
+        std::vector<std::string> possible_particle_shapes = {"full",
+                                                             "cube",
+                                                             "cylinder",
+                                                             "ellipsoid",
+                                                             "sphere",
+                                                             "truncated-octahedron",
+                                                             "tear-drop",
+                                                             "cone"
+                                                             "bubble"};
+        // mapping strings to an integer, currently 
+        // passed straight to cs::system_creation_flags[1]
+        std::map<std::string,int> map_system_shape_flag;
+ 
+            for (int i; i<possible_particle_shapes.size();i++){
+               map_system_shape_flag[possible_particle_shapes[i]]=i;};
+
+        // if the test string (word) is found in the vectir
+        std::vector<std::string>::iterator it;
+        it = std::find(possible_particle_shapes.begin(),
+                         possible_particle_shapes.end(),
+                         word);
+        if (it != possible_particle_shapes.end())
+           {//cs::system_shape_flag=word
+                // apply the associated creation flag
+                cs::system_creation_flags[1]= map_system_shape_flag[word];
+                }
+        else
+        test="faceted-particle";
+        if(word==test){
          // check for blank value
          test="";
          if(value == test){
@@ -73,81 +103,32 @@ namespace create{
          return true;
       }
 
-        // cs::system_creation_flags needs refactoring for readability and bug resistance
-        test="full";
-        if(word==test){
-            cs::system_creation_flags[1]=0;
-            return EXIT_SUCCESS;
-        }
-        else
-        //-------------------------------------------------------------------
-        test="cube";
-        if(word==test){
-            cs::system_creation_flags[1]=1;
-            return EXIT_SUCCESS;
-        }
-        else
-        //-------------------------------------------------------------------
-        test="cylinder";
-        if(word==test){
-            cs::system_creation_flags[1]=2;
-            return EXIT_SUCCESS;
-        }
-        else
-        //-------------------------------------------------------------------
-        test="ellipsoid";
-        if(word==test){
-            cs::system_creation_flags[1]=3;
-            return EXIT_SUCCESS;
-        }
-        else
-        //-------------------------------------------------------------------
-        test="sphere";
-        if(word==test){
-            cs::system_creation_flags[1]=4;
-            return EXIT_SUCCESS;
-        }
-        else
-        //-------------------------------------------------------------------
-        test="truncated-octahedron";
-        if(word==test){
-            cs::system_creation_flags[1]=5;
-            return EXIT_SUCCESS;
-        }
-        else
-        //-------------------------------------------------------------------
-        test="tear-drop";
-        if(word==test){
-            cs::system_creation_flags[1]=6;
-            return EXIT_SUCCESS;
-        }
-        else
         //-------------------------------------------------------------------
         // system_creation_flags[2] - Set system type
         //-------------------------------------------------------------------
-        test="particle";
-        if(word==test){
-            cs::system_creation_flags[2]=0;
-            return EXIT_SUCCESS;
-        }
-        else
-        test="particle-array";
-        if(word==test){
-            cs::system_creation_flags[2]=1;
-            return EXIT_SUCCESS;
-        }
-        else
-        test="hexagonal-particle-array";
-        if(word==test){
-            cs::system_creation_flags[2]=2;
-            return EXIT_SUCCESS;
-        }
-        else
-        test="voronoi-film";
-        if(word==test){
-            cs::system_creation_flags[2]=3;
-            return EXIT_SUCCESS;
-        }
+        // vector of strings to match word
+        std::vector<std::string> possible_system_types = {"particle",
+                                                          "particle-array",
+                                                          "hexagonal-particle-array",
+                                                          "voronoi-film",
+                                                          };
+
+        // mapping strings to an integer, currently 
+        // passed straight to cs::system_creation_flags[1]
+        std::map<std::string,int> map_system_type_flag;
+
+            for (int i; i<possible_system_types.size();i++){
+                map_system_type_flag[possible_system_types[i]]=i;};
+
+        // if the test string (word) is found in the vector
+        it = std::find(possible_system_types.begin(),
+                         possible_system_types.end(),
+                         word);
+        if (it != possible_system_types.end())
+           {//cs::system_shape_flag=word
+                // apply the associated creation flag
+                cs::system_creation_flags[2]= map_system_type_flag[word];
+                }
         else
       test="voronoi-grain-substructure";
       if(word==test){
@@ -427,23 +408,12 @@ namespace create{
          return true;
       }
       //--------------------------------------------------------------------
-      test="cone";
-      if(word==test){
-         cs::system_creation_flags[1]=8;
-         return true;
-		}
       // check for truncation factor
       test="cone-angle";
       if(word == test){
          double angle=atof(value.c_str());
          vin::check_for_valid_value(angle, word, line, prefix, unit, "none", 0.1,44.9 ,"input","0.1 - 44.9");
          create::internal::cone_angle=angle;
-         return true;
-		}
-      //--------------------------------------------------------------------
-      test="bubble";
-      if(word==test){
-         cs::system_creation_flags[1]=9;
          return true;
 		}
       //--------------------------------------------------------------------

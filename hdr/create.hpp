@@ -85,6 +85,7 @@ namespace cs{
 	// Other directives and flags
 	extern bool single_spin;
 	extern int system_creation_flags[10];
+	//extern std::string system_creation_flags[10];
 	extern bool fill_core_shell;
    extern bool core_shell_particles;
 
