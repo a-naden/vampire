@@ -59,9 +59,23 @@ namespace cs{
 	int system_creation_flags[10]={0,0,0,0,0,0,0,0,0,0};
         //std::string system_type_flag[10]={"isolated-particle",
         //                                  "cubic-array"};
-         
-        std::map<std::string,int> map_system_type_flag;
-        std::map<std::string,int> map_system_shape_flag;
+          std::map<std::string,e_shapes> map_system_shape_flag  ={{"full",full},
+                                                                 {"cube",cube},
+                                                                 {"cylinder",cylinder},
+                                                                 {"ellipsoid",ellipsoid},
+                                                                 {"sphere",sphere},
+                                                                 {"truncated-octahedron",truncated_octahedron},
+                                                                 {"tear-drop",tear_drop},
+                                                                 {"cone",cone},
+                                                                 {"bubble",bubble},
+                                                                 {"faceted-particle",faceted_particle},
+                                                                        };
+        //std::map<std::string,int> map_system_type_flag;
+        std::map<std::string,e_types> map_system_type_flag= {{"particle",particle},
+                                                             {"particle-array",particle_array},
+                                                             {"hexagonal-particle-array",hexagonal_pa},
+                                                             {"voronoi-film",voronoi_f}};
+        //std::map<std::string,int> map_system_shape_flag;
         std::string system_shape_flag;
         std::string system_type_flag;
 	bool fill_core_shell=true;

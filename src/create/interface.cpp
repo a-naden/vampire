@@ -43,12 +43,12 @@ namespace create{
                                                              "truncated-octahedron",
                                                              "tear-drop",
                                                              "cone"
-                                                             "bubble"};
+                                                             "bubble",
+                                                             "faceted-particle"};
         // mapping strings to an integer, currently 
         // passed straight to cs::system_creation_flags[1]
-            for (int i; i<possible_particle_shapes.size();i++){
-               cs::map_system_shape_flag[possible_particle_shapes[i]]=i;};
-
+            //for (int i; i<possible_particle_shapes.size();i++){
+            //   cs::map_system_shape_flag[possible_particle_shapes[i]]=i;};
         // if the test string (word) is found in the vectir
         std::vector<std::string>::iterator it;
         it = std::find(possible_particle_shapes.begin(),
@@ -57,15 +57,16 @@ namespace create{
         if (it != possible_particle_shapes.end())
            {cs::system_shape_flag=word;
                 // apply the associated creation flag
-                cs::system_creation_flags[1]= cs::map_system_shape_flag[word];
+                //cs::system_creation_flags[1]= cs::map_system_shape_flag[word];
                 }
         else
         test="faceted-particle";
         if(word==test){
          // check for blank value
+         cs::system_shape_flag=word;
          test="";
          if(value == test){
-            cs::system_creation_flags[1]=7;
+            //cs::system_creation_flags[1]=7;
             return true;
          }
          // otherwise require 3 numbers for 100,110 and 111 facet radii
@@ -97,7 +98,7 @@ namespace create{
          create::internal::faceted_particle_100_radius = u.at(0);
          create::internal::faceted_particle_110_radius = u.at(1);
          create::internal::faceted_particle_111_radius = u.at(2);
-         cs::system_creation_flags[1]=7;
+         //cs::system_creation_flags[1]=7;
          return true;
       }
 
@@ -115,8 +116,8 @@ namespace create{
         // passed straight to cs::system_creation_flags[1]
         // std::map<std::string,int> map_system_type_flag;
 
-            for (int i; i<possible_system_types.size();i++){
-                cs::map_system_type_flag[possible_system_types[i]]=i;};
+        //    for (int i; i<possible_system_types.size();i++){
+        //        cs::map_system_type_flag[possible_system_types[i]]=i;};
 
         // if the test string (word) is found in the vector
         it = std::find(possible_system_types.begin(),

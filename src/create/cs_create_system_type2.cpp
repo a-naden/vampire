@@ -86,19 +86,19 @@ int create_system_type(std::vector<cs::catom_t> & catom_array){
 	//----------------------------------------------------------------------------------
 	//switch(cs::system_creation_flags[2]){
 	switch(cs::map_system_shape_flag[system_shape_flag]){
-		case 0: // Isolated particle
+		case particle_flag: // Isolated particle
 			particle(catom_array);
 			break;
 
-		case 1: // Cubic Particle Array
+		case particle_array_flag: // Cubic Particle Array
 			particle_array(catom_array);
 			break;
 
-		case 2: // Hexagonal Particle Array
+		case hexagonal_particle_array_flag: // Hexagonal Particle Array
 			//hex_particle_array(catom_array);
 			break;
 
-		case 3: // Voronoi Granular Film
+		case voronoi_film_flag: // Voronoi Granular Film
 			voronoi_film(catom_array);
 			break;
 
@@ -192,35 +192,35 @@ int particle(std::vector<cs::catom_t> & catom_array){
 	}
 
 	// Use particle type flags to determine which particle shape to cut
-	switch(cs::system_creation_flags[1]){
-		case 0: // Bulk
+	switch(cs::map_system_shape_flag[system_shape_flag]){
+		case full: // Bulk
 			create::internal::bulk(catom_array);
 			break;
-		case 1: // Cube
+		case cube: // Cube
 			create::internal::cube(particle_origin,catom_array,0);
 			break;
-		case 2: // Cylinder
+		case cylinder: // Cylinder
 			create::internal::cylinder(particle_origin,catom_array,0);
 			break;
-      case 3: // Ellipsoid
+      case ellipsoid: // Ellipsoid
          create::internal::ellipsoid(particle_origin,catom_array,0);
          break;
-		case 4: // Sphere
+		case sphere: // Sphere
 			create::internal::sphere(particle_origin,catom_array,0);
 			break;
-		case 5: // Truncated Octahedron
+		case truncated_octahedron: // Truncated Octahedron
 			create::internal::truncated_octahedron(particle_origin,catom_array,0);
 			break;
-		case 6: // Teardrop
+		case tear_drop: // Teardrop
 			create::internal::teardrop(particle_origin,catom_array,0);
 			break;
-      case 7: // Faceted particle
+      case faceted_particle: // Faceted particle
    		create::internal::faceted(particle_origin,catom_array,0);
    		break;
-		case 8: // Cone
+		case cone: // Cone
 			create::internal::cone(particle_origin,catom_array,0);
 			break;
-      case 9: // Bubble
+      case bubble: // Bubble
          create::internal::bubble(particle_origin,catom_array,0);
          break;
 		default:

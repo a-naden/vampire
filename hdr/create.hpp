@@ -85,8 +85,24 @@ namespace cs{
 	// Other directives and flags
 	extern bool single_spin;
 	extern int system_creation_flags[10];
-        extern std::map<std::string,int> map_system_shape_flag;
-        extern std::map<std::string,int> map_system_type_flag;
+        //extern std::map<std::string,int> map_system_shape_flag;
+        enum e_shapes {full,
+                       cube,
+                       cylinder,
+                       ellipsoid,
+                       sphere,
+                       truncated_octahedron,
+                       tear_drop,
+                       cone,
+                       bubble,
+                       faceted_particle};
+        //extern std::map<std::string,e_shapes> map_system_shape_flag;
+        extern std::map<std::string,e_shapes> map_system_shape_flag;
+        enum e_types  {particle_flag,
+                       particle_array_flag,
+                       hexagonal_particle_array_flag,
+                       voronoi_film_flag};
+        extern std::map<std::string,e_types> map_system_type_flag;
         extern std::string system_shape_flag;
         extern std::string system_type_flag;
 	//extern std::string system_creation_flags[10];
