@@ -71,10 +71,10 @@ namespace cs{
                                                                  {"faceted-particle",faceted_particle},
                                                                         };
         //std::map<std::string,int> map_system_type_flag;
-        std::map<std::string,e_types> map_system_type_flag= {{"particle",particle},
-                                                             {"particle-array",particle_array},
-                                                             {"hexagonal-particle-array",hexagonal_pa},
-                                                             {"voronoi-film",voronoi_f}};
+        std::map<std::string,e_types> map_system_type_flag= {{"particle",particle_flag},
+                                                             {"particle-array",particle_array_flag},
+                                                             {"hexagonal-particle-array",hexagonal_particle_array_flag},
+                                                             {"voronoi-film",voronoi_film_flag}};
         //std::map<std::string,int> map_system_shape_flag;
         std::string system_shape_flag;
         std::string system_type_flag;
