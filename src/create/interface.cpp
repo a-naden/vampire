@@ -145,14 +145,14 @@ namespace create{
             double vsd=atof(value.c_str());
             vin::check_for_valid_value(vsd, word, line, prefix, unit, "none", 0.0, 1.0,"input","0.0 - 1.0");
             create_voronoi::voronoi_sd=vsd;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
         test="voronoi-row-offset";
         if(word==test){
             create_voronoi::parity=1;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
@@ -161,13 +161,13 @@ namespace create{
             int vs=atoi(value.c_str());
             vin::check_for_valid_int(vs, word, line, prefix, 0, 2000000000,"input","0 - 2,000,000,000");
             mtrandom::voronoi_seed=vs;
-                return EXIT_SUCCESS;
+                return true;
         }
         else
         test="voronoi-rounded-grains";
         if(word==test){
             create_voronoi::rounded=true;
-            return EXIT_SUCCESS;
+            return true;
         }
         else
         //-------------------------------------------------------------------
@@ -176,42 +176,42 @@ namespace create{
             double vsd=atof(value.c_str());
             vin::check_for_valid_value(vsd, word, line, prefix, unit, "none", 0.0, 1.0,"input","0.0 - 1.0");
             create_voronoi::area_cutoff=vsd;
-            return EXIT_SUCCESS;
+            return true;
         }
         else
         //-------------------------------------------------------------------
         test="particle-centre-offset"; //parity
         if(word==test){
             cs::particle_creation_parity=1;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
         test="single-spin";
         if(word==test){
             cs::single_spin=true;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
         test="periodic-boundaries-x";
         if(word==test){
             cs::pbc[0]=true;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
         test="periodic-boundaries-y";
         if(word==test){
             cs::pbc[1]=true;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
         test="periodic-boundaries-z";
         if(word==test){
             cs::pbc[2]=true;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         else
@@ -223,7 +223,7 @@ namespace create{
             if(value==VFalse){
                 cs::SelectMaterialByGeometry=false;
             }
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="fill-core-shell-particles";
@@ -234,7 +234,7 @@ namespace create{
             if(value==VFalse){
                 cs::fill_core_shell=false;
             }
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness";
@@ -245,7 +245,7 @@ namespace create{
             if(value==VFalse){
                 cs::interfacial_roughness=false;
             }
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="material-interfacial-roughness";
@@ -256,14 +256,14 @@ namespace create{
             if(value==VFalse){
                 cs::interfacial_roughness_local_height_field=false;
             }
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-random-seed";
         if(word==test){
             unsigned int vs=atoi(value.c_str());
             cs::interfacial_roughness_random_seed=vs;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-number-of-seed-points";
@@ -271,7 +271,7 @@ namespace create{
             int sc=atoi(value.c_str());
             vin::check_for_valid_int(sc, word, line, prefix, 0, 100000,"input","0 - 100,000");
             cs::interfacial_roughness_seed_count=sc;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-type";
@@ -279,17 +279,17 @@ namespace create{
             std::string loctest="peaks";
             if(value==loctest){
                 cs::interfacial_roughness_type=1;
-                return EXIT_SUCCESS;
+                return true;
             }
             else
             loctest="troughs";
             if(value==loctest){
                 cs::interfacial_roughness_type=-1;
-                return EXIT_SUCCESS;
+                return true;
             }
             else{
                 cs::interfacial_roughness_type=0;
-                return EXIT_SUCCESS;
+                return true;
             }
         }
         //--------------------------------------------------------------------
@@ -299,7 +299,7 @@ namespace create{
             // Test for valid range
             vin::check_for_valid_value(irsr, word, line, prefix, unit, "length", 0.0, 10000.0,"input","0.0 - 1 micrometre");
             cs::interfacial_roughness_mean_seed_radius=irsr;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-seed-radius-variance";
@@ -308,7 +308,7 @@ namespace create{
             // Test for valid range
             vin::check_for_valid_value(irsrv, word, line, prefix, unit, "none", 0.0, 1.0,"input","0.0 - 1.0");
             cs::interfacial_roughness_seed_radius_variance=irsrv;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-mean-height";
@@ -317,7 +317,7 @@ namespace create{
             // Test for valid range
             vin::check_for_valid_value(irmh, word, line, prefix, unit, "length", 0.1, 100.0,"input","0.1 Angstroms - 10 nanometres");
             cs::interfacial_roughness_mean_seed_height=irmh;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-maximum-height";
@@ -326,7 +326,7 @@ namespace create{
             // Test for valid range
             vin::check_for_valid_value(shm, word, line, prefix, unit, "length", 0.1, 100.0,"input","0.1 Angstroms - 10 nanometres");
             cs::interfacial_roughness_seed_height_max=shm;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="interfacial-roughness-height-field-resolution";
@@ -335,7 +335,7 @@ namespace create{
             // Test for valid range
             vin::check_for_valid_value(irhfr, word, line, prefix, unit, "length", 0.1, 100.0,"input","0.1 Angstroms - 10 nanometres");
             cs::interfacial_roughness_height_field_resolution=irhfr;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="multilayers";
@@ -345,7 +345,7 @@ namespace create{
             vin::check_for_valid_int(nmul, word, line, prefix, 1, 100,"input","1 - 100, specifying the number of multilayers to be generated");
             cs::multilayers = true;
             cs::num_multilayers = nmul;
-            return EXIT_SUCCESS;
+            return true;
         }
         //--------------------------------------------------------------------
         test="height-categorization";
@@ -354,12 +354,12 @@ namespace create{
             test="default";
             if(value==test){
                 // do nothing
-                return EXIT_SUCCESS;
+                return true;
             }
             test="multilayers";
             if(value==test){
                 cs::multilayer_height_category = true;
-                return EXIT_SUCCESS;
+                return true;
             }
             else{
                 terminaltextcolor(RED);
