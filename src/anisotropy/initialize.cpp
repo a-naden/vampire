@@ -80,6 +80,11 @@ namespace anisotropy{
          internal::kc6.resize(num_materials);
          for(int m = 0; m < num_materials; m++) internal::kc6[m] = internal::mp[m].kc6 * inverse_mu_s[m];
       }
+      // Fourth order uniaxial
+      if(internal::enable_uniaxial_fourth_order_rotational){
+         internal::k4prime.resize(num_materials);
+         for(int m = 0; m < num_materials; m++) internal::k4prime[m] = internal::mp[m].k4prime * inverse_mu_s[m];
+      }
 
       //---------------------------------------------------------------------
       // initialise axes for each material

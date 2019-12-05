@@ -34,6 +34,18 @@ namespace anisotropy{
       double energy = 0.0;
 
       // if not enabled then do nothing
+      //std::cout<<internal::enable_uniaxial_second_order<<
+      //internal::enable_uniaxial_fourth_order<<
+      //internal::enable_uniaxial_sixth_order<<
+      //                                             
+      //internal::enable_cubic_fourth_order <<
+      //internal::enable_cubic_fourth_order_rotation<<
+      //internal::enable_cubic_sixth_order     <<     
+      //                                             
+      //internal::enable_neel_anisotropy     <<       
+      //internal::enable_lattice_anisotropy<<std::endl;
+
+
       if(internal::enable_uniaxial_second_order)         energy += internal::uniaxial_second_order_energy(atom, mat, sx, sy, sz);
       if(internal::enable_uniaxial_fourth_order)         energy += internal::uniaxial_fourth_order_energy(atom, mat, sx, sy, sz);
       if(internal::enable_uniaxial_sixth_order)          energy += internal::uniaxial_sixth_order_energy (atom, mat, sx, sy, sz);
@@ -44,6 +56,7 @@ namespace anisotropy{
 
       if(internal::enable_neel_anisotropy)               energy += internal::neel_energy(atom, mat, sx, sy, sz);
       if(internal::enable_lattice_anisotropy)            energy += internal::lattice_energy(atom, mat, sx, sy, sz, temperature);
+      energy += internal::rot_fourth_order_energy(atom, mat, sx, sy, sz);
 
       return energy;
 

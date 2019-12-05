@@ -289,6 +289,15 @@ namespace anisotropy{
          return true;
       }
       //------------------------------------------------------------
+      test = "fourth-order-rotational-anisotropy-constant";
+      if( word == test ){
+         double k4prime = atof(value.c_str());
+         vin::check_for_valid_value(k4prime, word, line, prefix, unit, "energy", -1e-17, 1e-17,"material"," < +/- 1.0e-17 J/atom");
+         internal::mp[super_index].k4prime = k4prime;
+         internal::enable_uniaxial_fourth_order_rotational = true; // Switch on second order tensor calculation for all spins (from spherical harmonics)
+         return true;
+      }
+      //------------------------------------------------------------
       /*test="uniaxial-anisotropy-tensor";
       if(word==test){
          std::vector<double> t;

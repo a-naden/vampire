@@ -63,6 +63,8 @@ namespace anisotropy{
       // lattice anisotropy
       internal::lattice_fields(spin_array_x, spin_array_y, spin_array_z, type_array, field_array_x, field_array_y, field_array_z, start_index, end_index, temperature);
 
+      internal::rot_fourth_order_fields(spin_array_x, spin_array_y, spin_array_z, type_array, field_array_x, field_array_y, field_array_z, start_index, end_index);
+
       return;
 
    }

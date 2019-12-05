@@ -87,6 +87,7 @@ namespace anisotropy{
             double ku2; // second order uniaxial anisotropy constant (Ku1)
             double ku4; // fourth order uniaxial anisotropy constant (Ku2)
             double ku6; // sixth order uniaxial anisotropy constant  (Ku3)
+            double k4prime;
 
             double kc4; // fourth order cubic anisotropy constant (Kc1)
             double kc6; // sixth order cubic anisotropy constant (Kc2)
@@ -116,6 +117,7 @@ namespace anisotropy{
                ku6(0.0), // set initial value of ku6 to zero
                kc4(0.0), // set initial value of kc4 to zero
                kc6(0.0), // set initial value of kc6 to zero
+               k4prime(0.0),
                random_anisotropy(false), // disable random anisotropy
                random_grain_anisotropy(false) // disable random grain anisotropy
             {
@@ -165,6 +167,7 @@ namespace anisotropy{
       extern bool enable_uniaxial_second_order; // Flag to enable calculation of second order uniaxial anisotropy
       extern bool enable_uniaxial_fourth_order; // Flag to enable calculation of fourth order uniaxial anisotropy
       extern bool enable_uniaxial_sixth_order;  // Flag to enable calculation of sixth order uniaxial anisotropy
+      extern bool enable_uniaxial_fourth_order_rotational; // Flag to enable calculation of fourth order uniaxial anisotropy
 
       extern bool enable_cubic_fourth_order;    // Flag to enable calculation of fourth order cubic anisotropy
       extern bool enable_cubic_sixth_order;     // Flag to enable calculation of sixth order cubic  anisotropy
@@ -183,6 +186,7 @@ namespace anisotropy{
       extern std::vector<double> ku6;
       extern std::vector<double> kc4;
       extern std::vector<double> kc6;
+      extern std::vector<double> k4prime;
 
       // unrolled arrays for storing easy axes for each material
       extern std::vector<evec_t> ku_vector; // 001 easy axis direction
@@ -327,6 +331,20 @@ namespace anisotropy{
 
       void initialise_neel_anisotropy_tensor(std::vector <std::vector <bool> >& nearest_neighbour_interactions_list,
                                              std::vector<std::vector <neighbours::neighbour_t> >& cneighbourlist);
+      void rot_fourth_order_fields(std::vector<double>& spin_array_x,
+                                        std::vector<double>& spin_array_y,
+                                        std::vector<double>& spin_array_z,
+                                        std::vector<int>&    atom_material_array,
+                                        std::vector<double>& field_array_x,
+                                        std::vector<double>& field_array_y,
+                                        std::vector<double>& field_array_z,
+                                        const int start_index,
+                                        const int end_index);
+      double rot_fourth_order_energy(const int atom,
+                                          const int mat,
+                                          const double sx,
+                                          const double sy,
+                                          const double sz);
 
    } // end of internal namespace
 
